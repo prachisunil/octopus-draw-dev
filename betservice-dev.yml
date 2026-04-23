@@ -1,0 +1,155 @@
+spring:
+  application:
+    name: transactionservice
+
+  redis:
+    host: 10.1.6.8
+    port: 6379
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 1000
+        max-idle: 200
+        min-idle: 20
+        max-wait: 1000ms
+
+  datasource:
+    write:
+      url: jdbc:mysql://10.1.6.16/octopusallinone-dev
+      username: gaming
+      password: '{cipher}f78b67127b8a025cc94c9e8a8c1ecb320cfef9247ede23bf90dc1688d931988a'
+      driverClassName: com.mysql.cj.jdbc.Driver
+      maxPoolsize: 2
+      leakDetectionDuration: 60000
+      hikari:
+        maximum-pool-size: 3
+        minimum-idle: 1
+        connection-timeout: 30000
+        idle-timeout: 60000
+        max-lifetime: 1800000
+        leak-detection-threshold: 20000
+        validation-timeout: 5000
+        keepalive-time: 30000
+        pool-name: BetWriteHikariConnPool
+
+    read:
+      url: jdbc:mysql://10.1.6.16/octopusallinone-dev
+      username: gaming
+      password: '{cipher}f78b67127b8a025cc94c9e8a8c1ecb320cfef9247ede23bf90dc1688d931988a'
+      driverClassName: com.mysql.cj.jdbc.Driver
+      maxPoolsize: 2
+      leakDetectionDuration: 60000
+      hikari:
+        maximum-pool-size: 3
+        minimum-idle: 1
+        connection-timeout: 30000
+        idle-timeout: 60000
+        max-lifetime: 1800000
+        leak-detection-threshold: 20000
+        validation-timeout: 5000
+        keepalive-time: 30000
+        pool-name: BetReadHikariConnPool
+
+    hikari:
+      connection-test-query: SELECT 1
+
+    tomcat:
+      max-active: 2000
+      minEvictableIdleTimeMillis: 5000
+      validationQuery: SELECT 1
+      minIdle: 1
+      maxIdle: 5
+      initialSize: 1
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    proc:
+      param_null_passing: true
+
+server:
+  port: 8012
+  tomcat:
+    threads:
+      max: 500
+      min-spare: 50
+    accept-count: 200
+    connection-timeout: 20000
+  max-http-request-header-size: 40000
+
+google:
+  recaptcha:
+    site:
+      key: 6Le88-sUAAAAALvF4aUo7Y_Gkv9hZY53h1iyRYlf
+    secret:
+      key: 6Le88-sUAAAAAD544051E_SJD8rzPy6FnFx7Y5CP
+    verify:
+      url: https://www.google.com/recaptcha/api/siteverify
+
+mts:
+  enabled: false
+  confidence: 10000
+  configPath: D:/Projects/Octopus_Oct/Octopus_Baseline_Services/octopus_build/betservice/src/main/resources/mts-sdk.properties
+
+printCert: /var/www/digital-certificate.txt
+printPrivKey: /var/www/private-key.pem
+
+payCancelSchedular: false
+spring:
+  servlet:
+    multipart:
+      enabled: true
+
+opas:
+  host: https://octopusapi.diipl.in:8761/op
+  service:
+    url: https://dusanegamingapi.diipl.in:7443/op
+
+thirdPartyTokenUrl: https://qa-api.ggglottery.com/api
+clientid: 39610639-0b60-4511-a8ec-4b3efc4a45b7
+clientsecret: {cipher}2a4f63f943e9a40e6d0789e103c616f7a426f742d43c7b6718346a43e168707c85375fa72d259421c2427df68a926456de0eafbeccc918060fe49150647a27f942e3215f479bebca1e968eff246751749b80802be2ff876e49defeb683ad38eff4c7950d9c5c9b32314e2ceaae7161821b229919a6ea6c6fae13257adb19e277
+
+tpClientId: 39610639-0b60-4511-a8ec-4b3efc4a45b7
+tpClientSecret: {cipher}2a4f63f943e9a40e6d0789e103c616f7a426f742d43c7b6718346a43e168707c85375fa72d259421c2427df68a926456de0eafbeccc918060fe49150647a27f942e3215f479bebca1e968eff246751749b80802be2ff876e49defeb683ad38eff4c7950d9c5c9b32314e2ceaae7161821b229919a6ea6c6fae13257adb19e277
+
+aws:
+  accessKey: {cipher}2f20b3fec9f227f878d9c6be12b4ccb561774b19ab7a7a7d5226ff50d46255d6d976bd170e9112df61ee6d40b931cd7b
+  secretKey: {cipher}a91da67c6e2c09257611d837395a98f5156d66c921d6b96e7659c5c8ccf6066d19e4288c7e137260dbe7ee0105a09158
+
+isAmazonS3: true
+
+S3:
+  BUCKET:
+    LOCATION: ggg-customer-dev
+
+IMAGE:
+  BUCKET:
+    LOCATION: /var/www/gggstorage
+
+iscartBetAmt: true
+isMultipleSessionLogin: true
+enableFreeBet: true
+maxPayAmount: 10000
+tktCount: 5
+
+loadtestingSecretkey: acb1324804f07fa140636624172f7694e76aa3b16947c0d191043b08285513ef
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://10.1.7.193:8081/eureka/
+  instance:
+    hostname: 10.1.7.193
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure: DEBUG
