@@ -1,7 +1,9 @@
 spring:
   application:
     name: transactionservice
-
+    
+  main:
+    allow-bean-definition-overriding: true
   redis:
     host: 10.1.6.8
     port: 6379
